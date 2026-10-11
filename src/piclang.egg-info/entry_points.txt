@@ -1,0 +1,2 @@
+[console_scripts]
+piclang = piclang:main

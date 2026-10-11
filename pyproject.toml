@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "piclang"
+version = "0.1.0"
+authors = [
+    { name = "Mohammad Rakibul Islam", email = "rakibulofficial1017@gmail.com" }
+]
+description = "A cli to introduce strange way to store files and folders"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "Pillow>=12.0.0",
+]
+
+[project.scripts]
+piclang = "piclang:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

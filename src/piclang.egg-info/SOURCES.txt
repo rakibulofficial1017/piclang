@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+src/piclang/__init__.py
+src/piclang/__main__.py
+src/piclang.egg-info/PKG-INFO
+src/piclang.egg-info/SOURCES.txt
+src/piclang.egg-info/dependency_links.txt
+src/piclang.egg-info/entry_points.txt
+src/piclang.egg-info/requires.txt
+src/piclang.egg-info/top_level.txt

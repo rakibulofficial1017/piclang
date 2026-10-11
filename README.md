@@ -1,0 +1,108 @@
+# Piclang
+
+Piclang is a Python utility that stores a file or folder inside a single PNG image. It encodes the original data into pixel RGB values, compresses it with `zlib`, and writes the result as a valid PNG file that can later be decoded back to its original contents.
+
+This makes it useful for:
+
+- hiding files in plain sight
+- bundling folders into a single image payload
+- experimenting with custom steganographic-style data storage
+- converting a file or directory into a portable, easy-to-share image
+
+## Features
+
+- Encode a single file or an entire folder into a PNG
+- Decode the PNG back into the original file or folder structure
+- Keep folder contents recursively intact
+- Optional custom image width for more control over the output image size
+- CLI and Python API support
+
+## Installation
+
+From a local checkout of this repository:
+
+```bash
+git clone https://github.com/rakibulofficial1017/piclang.git
+cd piclang
+python -m pip install .
+```
+
+If the package is available from PyPI in your environment, you can also install it with:
+
+```bash
+python -m pip install piclang
+```
+
+## Command-line usage
+
+Encode a file:
+
+```bash
+piclang encode lorem.txt -o lorem.png
+```
+
+Encode a folder:
+
+```bash
+piclang encode my-folder -o my-folder.png
+```
+
+Use a custom image width:
+
+```bash
+piclang encode report.pdf -o report.png -w 1200
+```
+
+Decode an image back to its original content:
+
+```bash
+piclang decode lorem.png -o restored.txt
+```
+
+Decode a folder archive:
+
+```bash
+piclang decode my-folder.png -o extracted_folder
+```
+
+## Python API
+
+You can also use the library directly from Python:
+
+```python
+from piclang import encode_path, decode_path
+
+encode_path("lorem.txt", "lorem.png")
+decode_path("lorem.png", "restored.txt")
+```
+
+Or with a custom width:
+
+```python
+from piclang import encode_path
+
+encode_path("my-folder", "my-folder.png", width=2000)
+```
+
+## How it works
+
+Piclang does the following:
+
+1. Reads the input file or recursively serializes a folder into a JSON payload.
+2. Compresses the payload with `zlib`.
+3. Packs the compressed payload with a small header that stores metadata.
+4. Stores the binary data in the RGB channels of a PNG image.
+5. Decodes by reading the PNG pixels, validating the header, decompressing the payload, and restoring the original file or folder.
+
+## Notes
+
+- The project is intended as a lightweight experimental encoder/decoder rather than a production-grade archival format.
+- Output image dimensions are chosen automatically unless you provide `--width`.
+- Symbolic links are skipped during folder encoding for safety.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+Created by [Mohammad Rakibul Islam](https://github.com/rakibulofficial1017).
+Source code: [rakibulofficial1017/ChemQL](https://github.com/rakibulofficial1017/piclang).

@@ -145,7 +145,7 @@ def decode_path(
         data = bytes(
             channel
             for pixel in image.get_flattened_data()
-            for channel in pixel
+            for channel in pixel #type:ignore
         )
 
     if len(data) < HEADER_SIZE:
